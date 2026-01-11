@@ -39,3 +39,8 @@ int FoundWord::calcScore(){
         return 11;
     }
 }
+
+int FoundWord::getScore() const {
+    return this->score;        
+}    
+

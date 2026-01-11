@@ -7,12 +7,15 @@
 #include "Solver.h"
 #include "Board.h"
 
+#include <cstdlib>
+#include <cstring>
+
 #include <emscripten/emscripten.h>
 
 extern "C" {
 EMSCRIPTEN_KEEPALIVE
-void solveBoard(const char** arr, int rows, int cols) {            // should rows + cols be const?
-    static Dict d2("/dictionaries/cleanDictDec.txt"); // removed words w/ less than len of 3
+char* solveBoard(const char** arr, int rows, int cols) {
+    static Dict d2("/dictionaries/cleanDictDec.txt"); 
     static Solver s2(d2);
     std::vector<std::vector<std::string>> boardinput;
 
@@ -28,9 +31,30 @@ void solveBoard(const char** arr, int rows, int cols) {            // should row
 
     Board b2(boardinput);
 
+
     std::set<FoundWord> answers = s2.getFoundWords(b2);
-    for (auto word : answers)
+    int wordCount = answers.size();
+    int maxScore = 0;
+
+    for (auto word : answers) {
+        maxScore += word.getScore();
         word.print();
+    }
+
+
+
+    // std::string json = "{\"names\":[\"dave\",\"fred\"]}";
+    std::string json = "{";
+    json += "\"wordCount\":\"" + std::to_string(wordCount) + "\",";
+    json += "\"maxScore\":\"" + std::to_string(maxScore) + "\"";
+
+
+    json += "}";
+
+
+    char* out = (char*)malloc(json.size() + 1);
+    std::memcpy(out, json.c_str(), json.size() + 1);
+    return out;
 }
 }
 

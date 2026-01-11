@@ -1,3 +1,5 @@
 main
 cleanedDict.txt
 cleanedDictDec.txt
+web/node_modules/
+

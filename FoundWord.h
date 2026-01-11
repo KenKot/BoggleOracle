@@ -12,6 +12,7 @@ class FoundWord {
     bool operator<(const FoundWord& other) const;
 
     void print() const;
+    int getScore() const;
 
    private:
     std::string word;
