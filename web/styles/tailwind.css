@@ -1,2 +1,8 @@
 @import "tailwindcss";
+@plugin "daisyui";
 
+@layer utilities {
+  .my-custom {
+    color: purple;
+  }
+}

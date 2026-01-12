@@ -82,11 +82,8 @@ char* solveBoard(const char** arr, int rows, int cols) {
         json += "]}";
     }
 
-
     json += "]";
-
     json += "}";
-
 
     char* out = (char*)malloc(json.size() + 1);
     std::memcpy(out, json.c_str(), json.size() + 1);
@@ -95,5 +92,5 @@ char* solveBoard(const char** arr, int rows, int cols) {
 }
 
 int main(){
-    std::cout << "main fired" << std::flush;
+    std::cout << "main fired\n" << std::flush;
 }

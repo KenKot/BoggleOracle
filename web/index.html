@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="styles/style.css" />
     <link rel="stylesheet" href="./styles/output.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
     <script type="module" src="./main.js"></script>
   </head>
   <body>
-    <h1>Boggle Bat</h1>
-    <h1 class="text-3xl font-bold underline">Tailwind is working</h1>
-    <button id="run">Run</button>
-    <div id="out"></div>
+    <button id="toggle" class="btn btn-primary">Toggle Page</button>
+
+    <div id="page1" class="w-full h-screen bg-blue-100">
+      <h1 class="text-4xl p-10">Page 1</h1>
+      <button id="run">Run</button>
+    </div>
+
+    <div id="page2" class="w-full h-screen bg-green-100 hidden">
+      <h1 class="text-4xl p-10">Page 2</h1>
+    </div>
   </body>
 </html>
