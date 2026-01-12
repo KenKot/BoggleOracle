@@ -36,18 +36,54 @@ char* solveBoard(const char** arr, int rows, int cols) {
     int wordCount = answers.size();
     int maxScore = 0;
 
-    for (auto word : answers) {
+    for (const FoundWord& word : answers) {
         maxScore += word.getScore();
         word.print();
     }
 
 
+    /*
+     * { "wordCount" : 8, "maxScore" : 30,
+     * "words": [{
+     *  "word": "cat",
+     *  "definition": "small animal",
+     *  "points": 1
+     *  "path": [[0,1], [0,2], [1,2]]
+     * }]
+    */
 
-    // std::string json = "{\"names\":[\"dave\",\"fred\"]}";
     std::string json = "{";
-    json += "\"wordCount\":\"" + std::to_string(wordCount) + "\",";
-    json += "\"maxScore\":\"" + std::to_string(maxScore) + "\"";
+    json += "\"wordCount\":" + std::to_string(wordCount) + ",";
+    json += "\"maxScore\":" + std::to_string(maxScore) + ",";
 
+    json += "\"words\":[";
+
+    int isFirstWord = 1;
+    for (const FoundWord& word : answers) {
+     // prevent pre-pended comma on first word
+        if (isFirstWord) {
+            isFirstWord = 0;
+        } else {
+            json += ",";
+        }
+
+        json += "{\"word\":\"" + word.getWord() + "\", \"definition\":\"" + word.getDefinition() + "\",\"points\":";
+        json += std::to_string(word.getScore()) + ", \"path\": [";
+
+        const std::vector<std::pair<int, int>>& path = word.getPath();
+        for (size_t i = 0; i < path.size() - 1; i++) { 
+            if (i > 0) {
+                json += ",";
+            }
+                
+            json += "[" + std::to_string(path[i].first) + "," + std::to_string(path[i].second) + "]";
+        }
+
+        json += "]}";
+    }
+
+
+    json += "]";
 
     json += "}";
 

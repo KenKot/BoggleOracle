@@ -13,6 +13,9 @@ class FoundWord {
 
     void print() const;
     int getScore() const;
+    std::string getWord() const;
+    std::string getDefinition() const;
+    const std::vector<std::pair<int, int>>& getPath() const; 
 
    private:
     std::string word;

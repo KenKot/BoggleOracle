@@ -20,19 +20,19 @@ void Dict::loadDictFile(const std::string& filename) {
     std::string definition;
     // int delimiterIndex;
 
-    while (std::getline(inputFile, line)) {
-        std::size_t delimiterIndex = line.find(TXT_FILE_DELIMITER); // e.g., ':'
-        word = line.substr(0, delimiterIndex);
-        definition = line.substr(delimiterIndex + 1);
+while (std::getline(inputFile, line)) {
+    std::size_t delimiterIndex = line.find(TXT_FILE_DELIMITER);
 
-        // std::cout<<"word is : " << word << std::endl;
-        // std::cout<<"def is : " << definition << std::endl;
-        
-
-
-        
-        addWord(word, definition);
+    if (delimiterIndex == std::string::npos) {
+        std::cerr << "Skipping malformed line: " << line << std::endl;
+        continue;
     }
+
+    word = line.substr(0, delimiterIndex);
+    definition = line.substr(delimiterIndex + 1);
+
+    addWord(word, definition);
+}
 
     inputFile.close();
 }

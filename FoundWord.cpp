@@ -42,5 +42,16 @@ int FoundWord::calcScore(){
 
 int FoundWord::getScore() const {
     return this->score;        
-}    
+}
+
+std::string FoundWord::getWord() const {
+    return this->word;
+}
+std::string FoundWord::getDefinition() const {
+    return this->definition;
+}
+const std::vector<std::pair<int, int>>& FoundWord::getPath() const {
+    return this->path;
+}
+
 
