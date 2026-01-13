@@ -4,10 +4,13 @@ const $id = (id) => document.getElementById(id);
 // const $class = (class) => document.getElementsByclass(class);
 
 createModule().then((Module) => {
-  // const $ = (id) => document.getElementById(id);
+  const boardEl = document.querySelector("#board");
+  const wordCountEl = document.querySelector("#word-count");
+  const scoreCountEl = document.querySelector("#score-count");
+  const wordFoundOlEl = document.querySelector("#words-found-ol");
 
   const SIZE = 4;
-  const boardEl = document.querySelector("#board");
+  let wordPaths = []; // use index that's stored on html element
 
   $id("run").onclick = () => {
     const words = cells.flat().map((inp) => inp.value.trim().toLowerCase());
@@ -40,8 +43,54 @@ createModule().then((Module) => {
     console.log("result is", result);
     // console.log("word count", result["wordCount"]);
     // console.log("ma")
+    handleJsonRes(result);
   };
 
+  // populate UI w/ JSON reponse
+  const handleJsonRes = (res) => {
+    let { maxScore, wordCount, words } = res;
+    scoreCountEl.textContent = maxScore;
+    wordCountEl.textContent = wordCount;
+
+    for (let i = 0; i < words.length; i++) {
+      const { word, definition, points, path } = words[i];
+      const olListItem = document.createElement("li");
+      olListItem.textContent = `${word} (${points}pts) : ${definition}`;
+
+      // store each words path data in JS,
+      // then use array index to store on html and to later use to access
+      olListItem.dataset.arrayIndex = i;
+
+      let pathCopy = path.map((row) => row.slice()); // need to copy 2d array
+
+      wordPaths.push(pathCopy); // 'wordsPath' is a parent scope
+      wordFoundOlEl.appendChild(olListItem);
+    }
+  };
+
+  // /populate UI w/ JSON reponse
+
+  // prefill board for testing
+  const prefillBoard = () => {
+    const preset = [
+      ["e", "i", "l", "a"],
+      ["t", "p", "a", "g"],
+      ["r", "e", "t", "o"],
+      ["h", "t", "a", "y"],
+    ];
+
+    for (let r = 0; r < SIZE; r++) {
+      for (let c = 0; c < SIZE; c++) {
+        cells[r][c].value = preset[r][c];
+      }
+    }
+  };
+  $id("prefill").onclick = prefillBoard;
+  // /prefill board for testing
+
+  // /populate UI w/ JSON reponse
+
+  // toggle page
   $id("toggle").onclick = () => {
     console.log("toggle fired!");
     const p1 = $id("page1");
@@ -49,7 +98,9 @@ createModule().then((Module) => {
     p1.classList.toggle("hidden");
     p2.classList.toggle("hidden");
   };
+  // /toggle page
 
+  // create grid
   const cells = Array.from({ length: SIZE }, () => Array(SIZE));
 
   for (let r = 0; r < SIZE; r++) {
@@ -67,11 +118,11 @@ createModule().then((Module) => {
 
       boardEl.appendChild(input);
       cells[r][c] = input;
+      // set
+      // cells[0][0].value = "Qu";
+      // get
+      // console.log(cells[2][3].value);
     }
   }
-
-  // set
-  // cells[0][0].value = "Qu";
-  // get
-  // console.log(cells[2][3].value);
+  // /create grid
 });

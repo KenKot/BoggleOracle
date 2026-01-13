@@ -22,11 +22,17 @@
         class="inline-grid grid-cols-4 gap-1 place-items-center border-2 !border-blue-600"
       ></div>
       <button id="run">Run</button>
+      <button id="prefill" class="btn btn-sm">Prefill</button>
     </div>
 
     <!-- page 2 - solved results -->
-    <div id="page2" class="w-full h-screen bg-green-100 hidden">
+    <div id="page2" class="w-full h-screen hidden">
       <h1 class="text-4xl p-10">Page 2</h1>
+      <h2>Total Words Found:</h2>
+      <p id="word-count"></p>
+      <h2 id="score-count">Max Score Possible:</h2>
+      <h2>Words Found:</h2>
+      <ol id="words-found-ol"></ol>
     </div>
   </body>
 </html>
