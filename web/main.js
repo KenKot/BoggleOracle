@@ -1,7 +1,7 @@
 import createModule from "./boggle.js";
 
 const $id = (id) => document.getElementById(id);
-// const $class = (class) => document.getElementsByclass(class);
+// const $class = (class) => document.getElementsByclassName(class);
 
 createModule().then((Module) => {
   const boardEl = document.querySelector("#board");
@@ -55,17 +55,23 @@ createModule().then((Module) => {
     for (let i = 0; i < words.length; i++) {
       const { word, definition, points, path } = words[i];
       const olListItem = document.createElement("li");
-      olListItem.textContent = `${word} (${points}pts) : ${definition}`;
+      // olListItem.textContent = `${word} (${points}pts) : ${definition}`;
 
       // store each words path data in JS,
       // then use array index to store on html and to later use to access
       olListItem.dataset.arrayIndex = i;
 
-      let pathCopy = path.map((row) => row.slice()); // need to copy 2d array
+      // by references should be ok
+      // let pathCopy = path.map((row) => row.slice()); // need to copy 2d array
+      // wordPaths.push(pathCopy); // 'wordsPath' is a parent scope
 
-      wordPaths.push(pathCopy); // 'wordsPath' is a parent scope
+      wordPaths.push(path); // 'wordsPath' is a parent scope
+
+      olListItem.textContent = `${word} (${points}pts) : ${definition} - ${path}`;
+
       wordFoundOlEl.appendChild(olListItem);
     }
+    console.log(wordPaths[0]);
   };
 
   // /populate UI w/ JSON reponse
