@@ -7,36 +7,90 @@
 #include "Solver.h"
 #include "Board.h"
 
+#include <cstdlib>
+#include <cstring>
 
-int main() {
-    Dict d1("./dictionaries/smalldict1.txt");
+#include <emscripten/emscripten.h>
 
-    std::vector<std::vector<std::string>> b1input = {
-        {"qu", "a", "t"},
-        {"x", "c", "k"}
-    };
+extern "C" {
+EMSCRIPTEN_KEEPALIVE
+char* solveBoard(const char** arr, int rows, int cols) {
+    static Dict d2("/dictionaries/cleanDictDec.txt"); 
+    static Solver s2(d2);
+    std::vector<std::vector<std::string>> boardinput;
+
+    for (int i = 0; i < rows; i++) {
+        std::vector<std::string> row;
+        for (int j = 0; j < cols; j++) {
+            int idx = i * cols + j;
+            std::string curr = arr[idx];
+            row.emplace_back(curr);
+        }
+        boardinput.push_back(row);
+    }
+
+    Board b2(boardinput);
 
 
-    Board b1(b1input);
-    b1.printBoard();
+    std::set<FoundWord> answers = s2.getFoundWords(b2);
+    int wordCount = answers.size();
+    int maxScore = 0;
 
-    Solver s1(d1);
-
-    std::set<FoundWord> answers = s1.getFoundWords(b1);
-    for (auto word : answers)
+    for (const FoundWord& word : answers) {
+        maxScore += word.getScore();
         word.print();
+    }
 
 
-    std::cout << "\ncleaned dict test\n\n";
+    /*
+     * { "wordCount" : 8, "maxScore" : 30,
+     * "words": [{
+     *  "word": "cat",
+     *  "definition": "small animal",
+     *  "points": 1
+     *  "path": [[0,1], [0,2], [1,2]]
+     * }]
+    */
 
+    std::string json = "{";
+    json += "\"wordCount\":" + std::to_string(wordCount) + ",";
+    json += "\"maxScore\":" + std::to_string(maxScore) + ",";
 
-    //Dict d2("./dictionaries/cleanedDict.txt");  // has words of len 2
-    Dict d2("./dictionaries/cleanDictDec.txt"); // removed words w/ less than len of 3
-    Board b2(b1input);
-    Solver s2(d2);
+    json += "\"words\":[";
 
+    int isFirstWord = 1;
+    for (const FoundWord& word : answers) {
+     // prevent pre-pended comma on first word
+        if (isFirstWord) {
+            isFirstWord = 0;
+        } else {
+            json += ",";
+        }
 
-    answers = s2.getFoundWords(b1);
-    for (auto word : answers)
-        word.print();
+        json += "{\"word\":\"" + word.getWord() + "\", \"definition\":\"" + word.getDefinition() + "\",\"points\":";
+        json += std::to_string(word.getScore()) + ", \"path\": [";
+
+        const std::vector<std::pair<int, int>>& path = word.getPath();
+        for (size_t i = 0; i < path.size() - 1; i++) { 
+            if (i > 0) {
+                json += ",";
+            }
+                
+            json += "[" + std::to_string(path[i].first) + "," + std::to_string(path[i].second) + "]";
+        }
+
+        json += "]}";
+    }
+
+    json += "]";
+    json += "}";
+
+    char* out = (char*)malloc(json.size() + 1);
+    std::memcpy(out, json.c_str(), json.size() + 1);
+    return out;
+}
+}
+
+int main(){
+    std::cout << "main fired\n" << std::flush;
 }
