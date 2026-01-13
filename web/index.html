@@ -2,17 +2,29 @@
 <html>
   <head>
     <link rel="stylesheet" href="./styles/output.css" />
-    <link rel="stylesheet" href="./styles/style.css" />
+    <!-- <link rel="stylesheet" href="./styles/style.css" /> -->
     <script type="module" src="./main.js"></script>
   </head>
   <body>
-    <button id="toggle" class="btn btn-primary">Toggle Page</button>
+    <button id="toggle" class="btn btn-primary">Togglee Page</button>
 
-    <div id="page1" class="w-full h-screen bg-blue-100">
+    <!-- page 1 - webcam, board, solve button -->
+    <div id="page1" class="w-full h-screen">
       <h1 class="text-4xl p-10">Page 1</h1>
+
+      <!-- <div
+        id="board"
+        class="inline-grid grid-cols-6 gap-1 place-items-center border-2 !border-blue-600"
+      ></div> -->
+
+      <div
+        id="board"
+        class="inline-grid grid-cols-4 gap-1 place-items-center border-2 !border-blue-600"
+      ></div>
       <button id="run">Run</button>
     </div>
 
+    <!-- page 2 - solved results -->
     <div id="page2" class="w-full h-screen bg-green-100 hidden">
       <h1 class="text-4xl p-10">Page 2</h1>
     </div>
