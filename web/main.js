@@ -15,15 +15,16 @@ const newGameBtnEl = document.querySelector("#new-game");
 
 const SIZE = 4;
 let wordPaths = [];
+let cells = Array.from({ length: SIZE }, () => Array(SIZE));
 
 // new game:
 newGameBtnEl.onclick = () => {
   wordPaths = [];
   togglePages();
+  clearGrid();
 };
 
 // create grid:
-const cells = Array.from({ length: SIZE }, () => Array(SIZE));
 for (let r = 0; r < SIZE; r++) {
   for (let c = 0; c < SIZE; c++) {
     const input = document.createElement("input");
@@ -39,27 +40,18 @@ for (let r = 0; r < SIZE; r++) {
   }
 }
 
+// clear grid:
+const clearGrid = () => {
+  for (const row of cells) {
+    for (const cell of row) {
+      cell.value = "";
+    }
+  }
+};
+
 const togglePages = () => {
   p1.classList.toggle("hidden");
   p2.classList.toggle("hidden");
-};
-
-const handleJsonRes = (res) => {
-  wordPaths = [];
-  wordFoundOlEl.textContent = "";
-
-  const { maxScore, wordCount, words } = res;
-  scoreCountEl.textContent = maxScore;
-  wordCountEl.textContent = wordCount;
-
-  for (let i = 0; i < words.length; i++) {
-    const { word, definition, points, path } = words[i];
-    const li = document.createElement("li");
-    li.dataset.arrayIndex = i;
-    wordPaths.push(path);
-    li.textContent = `${word} (${points}pts) : ${definition} - ${path}`;
-    wordFoundOlEl.appendChild(li);
-  }
 };
 
 // prefill for testing
@@ -106,3 +98,21 @@ createModule().then((Module) => {
     togglePages();
   };
 });
+
+const handleJsonRes = (res) => {
+  wordPaths = [];
+  wordFoundOlEl.textContent = "";
+
+  const { maxScore, wordCount, words } = res;
+  scoreCountEl.textContent = maxScore;
+  wordCountEl.textContent = wordCount;
+
+  for (let i = 0; i < words.length; i++) {
+    const { word, definition, points, path } = words[i];
+    const li = document.createElement("li");
+    li.dataset.arrayIndex = i;
+    wordPaths.push(path);
+    li.textContent = `${word} (${points}pts) : ${definition} - ${path}`;
+    wordFoundOlEl.appendChild(li);
+  }
+};
