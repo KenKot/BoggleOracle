@@ -6,16 +6,9 @@
     <script type="module" src="./main.js"></script>
   </head>
   <body>
-    <button id="toggle" class="btn btn-primary">Togglee Page</button>
-
     <!-- page 1 - webcam, board, solve button -->
     <div id="page1" class="w-full h-screen">
       <h1 class="text-4xl p-10">Page 1</h1>
-
-      <!-- <div
-        id="board"
-        class="inline-grid grid-cols-6 gap-1 place-items-center border-2 !border-blue-600"
-      ></div> -->
 
       <div
         id="board"
@@ -27,7 +20,7 @@
 
     <!-- page 2 - solved results -->
     <div id="page2" class="w-full h-screen hidden">
-      <h1 class="text-4xl p-10">Page 2</h1>
+      <button id="new-game" class="btn btn-primary">New Game</button>
       <h2>Total Words Found:</h2>
       <p id="word-count"></p>
       <h2>Max Score Possible:</h2>
