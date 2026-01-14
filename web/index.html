@@ -10,10 +10,17 @@
     <div id="page1" class="w-full h-screen">
       <h1 class="text-4xl p-10">Boggle Badger</h1>
 
+      <div id="size-buttons" class="flex gap-2 px-10 pb-4">
+        <button id="size-4" class="btn btn-sm" disabled>4x4</button>
+        <button id="size-5" class="btn btn-sm">5x5</button>
+        <button id="size-6" class="btn btn-sm">6x6</button>
+      </div>
+
       <div
         id="board"
         class="inline-grid grid-cols-4 gap-1 place-items-center border-2 !border-blue-600"
       ></div>
+
       <button id="run">Run</button>
       <button id="prefill" class="btn btn-sm">Prefill</button>
     </div>
