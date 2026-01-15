@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/output.css" />
     <!-- <link rel="stylesheet" href="./styles/style.css" /> -->
     <script type="module" src="./main.js"></script>
   </head>
   <body>
     <!-- page 1 - webcam, board, solve button -->
-    <div id="page1" class="w-full h-screen">
-      <h1 class="text-4xl p-10">Boggle Badger</h1>
-
-      <div id="size-buttons" class="flex gap-2 px-10 pb-4">
+    <div
+      id="page1"
+      class="w-full min-h-screen flex flex-col items-center justify-center p-4 gap-4"
+    >
+      <div id="size-buttons" class="flex gap-2 justify-center flex-wrap">
         <button id="size-4" class="btn btn-sm" disabled>4x4</button>
         <button id="size-5" class="btn btn-sm">5x5</button>
         <button id="size-6" class="btn btn-sm">6x6</button>
@@ -21,12 +23,17 @@
         class="inline-grid grid-cols-4 gap-1 place-items-center border-2 !border-blue-600"
       ></div>
 
-      <button id="run">Run</button>
-      <button id="prefill" class="btn btn-sm">Prefill</button>
+      <div class="flex gap-2 justify-center">
+        <button id="run" class="btn btn-sm">Run</button>
+        <button id="prefill" class="btn btn-sm">Prefill</button>
+      </div>
     </div>
 
     <!-- page 2 - solved results -->
-    <div id="page2" class="w-full h-screen hidden">
+    <div
+      id="page2"
+      class="w-full min-h-screen hidden flex flex-col items-center justify-center p-4"
+    >
       <button id="new-game" class="btn btn-primary">New Game</button>
       <h2>Total Words Found:</h2>
       <p id="word-count"></p>
