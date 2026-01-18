@@ -1,4 +1,10 @@
-import { runBtnEl, prefillBtnEl, newGameBtnEl } from "./UI/DOM.js";
+import {
+  runBtnEl,
+  prefillBtnEl,
+  newGameBtnEl,
+  startCamBtn,
+  takePictureBtn,
+} from "./UI/DOM.js";
 // import { prefillBoard } from "./testing/utils.js";
 import { state, setSize, setCells } from "./state.js";
 import { initWebcamUI } from "./UI/webcam.js";
@@ -25,6 +31,9 @@ initSizeButtons((n) => {
 });
 
 newGameBtnEl.addEventListener("click", () => {
+  cam?.stop?.();
+  if (startCamBtn) startCamBtn.disabled = false;
+  if (takePictureBtn) takePictureBtn.disabled = true;
   clearResults();
   clearGrid(state.cells);
   showBoardPage();

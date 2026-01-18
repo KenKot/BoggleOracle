@@ -17,7 +17,8 @@ export function renderResults(res) {
     const { word, definition, points, path } = words[i];
     const li = document.createElement("li");
     li.dataset.arrayIndex = String(i);
-    li.textContent = `${word} (${points}pts) : ${definition} - ${path}`;
+    // li.textContent = `${word} (${points}pts) : ${definition} - ${path}`;
+    li.textContent = `${word} (${points}pts) : ${definition}`;
     wordFoundOlEl.appendChild(li);
   }
 }
