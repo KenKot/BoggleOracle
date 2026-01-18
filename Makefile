@@ -1,5 +1,5 @@
 all:
-	em++ Board.cpp Dict.cpp FoundWord.cpp Solver.cpp DictMain.cpp \
+	em++ cpp/Board.cpp cpp/Dict.cpp cpp/FoundWord.cpp cpp/Solver.cpp cpp/DictMain.cpp \
 		-O3 \
 		-s MODULARIZE=1 -s EXPORT_ES6=1 -s ENVIRONMENT=web \
 		-s ALLOW_MEMORY_GROWTH=1 \
@@ -9,5 +9,7 @@ all:
 		--preload-file dictionaries@/dictionaries \
 		-o web/boggle.js
 
+
 clean:
 	rm -f web/boggle.js web/boggle.wasm web/boggle.data
+

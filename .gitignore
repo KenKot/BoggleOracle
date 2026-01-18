@@ -1,5 +1,3 @@
-main
-cleanedDict.txt
-cleanedDictDec.txt
+**/main
 web/node_modules/
 
