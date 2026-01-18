@@ -106,7 +106,29 @@ export function createWebcam(options) {
     video.srcObject = stream;
 
     await new Promise(function (resolve) {
-      video.onloadedmetadata = resolve;
+      if (video.readyState >= 1) {
+        resolve();
+        return;
+      }
+
+      let timeoutId = null;
+      const onLoaded = function () {
+        cleanup();
+        resolve();
+      };
+      const onError = function () {
+        cleanup();
+        resolve();
+      };
+      const cleanup = function () {
+        if (timeoutId !== null) clearTimeout(timeoutId);
+        video.removeEventListener("loadedmetadata", onLoaded);
+        video.removeEventListener("error", onError);
+      };
+
+      video.addEventListener("loadedmetadata", onLoaded);
+      video.addEventListener("error", onError);
+      timeoutId = setTimeout(onLoaded, 2000);
     });
 
     try {
