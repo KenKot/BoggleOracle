@@ -3,30 +3,47 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/output.css" />
-    <!-- <link rel="stylesheet" href="./styles/style.css" /> -->
     <script type="module" src="./src/main.js"></script>
   </head>
   <body>
     <!-- page 1 - webcam, board, solve button -->
-
     <div
       id="page1"
       class="w-full min-h-screen flex flex-col items-center justify-center p-4 gap-4"
     >
+      <div id="camera" class="w-full max-w-sm flex flex-col items-center gap-2">
+        <div
+          class="w-full aspect-square border-2 border-blue-600 rounded-lg overflow-hidden bg-black"
+        >
+          <canvas
+            id="cam-viewport"
+            width="960"
+            height="960"
+            class="w-full h-full block"
+          ></canvas>
+        </div>
+
+        <div class="w-full flex flex-wrap gap-2 justify-center">
+          <button id="start-cam" class="btn btn-sm">Start camera</button>
+          <button id="capture" class="btn btn-sm" disabled>Capture</button>
+        </div>
+      </div>
+
+      <div
+        id="board"
+        class="inline-grid grid-cols-4 gap-1 place-items-center border-2 !border-blue-600 rounded-lg"
+      ></div>
+
       <div id="size-buttons" class="flex gap-2 justify-center flex-wrap">
         <button id="size-4" class="btn btn-sm" disabled>4x4</button>
         <button id="size-5" class="btn btn-sm">5x5</button>
         <button id="size-6" class="btn btn-sm">6x6</button>
       </div>
 
-      <div
-        id="board"
-        class="inline-grid grid-cols-4 gap-1 place-items-center border-2 !border-blue-600"
-      ></div>
-
       <div class="flex gap-2 justify-center">
         <button id="run" class="btn btn-sm">Run</button>
-        <button id="prefill" class="btn btn-sm">Prefill</button>
+        <!-- prefill button for testing -->
+        <!-- <button id="prefill" class="btn btn-sm">Prefill</button> -->
       </div>
     </div>
 

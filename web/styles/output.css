@@ -10,6 +10,8 @@
     --color-blue-600: oklch(54.6% 0.245 262.881);
     --color-black: #000;
     --spacing: 0.25rem;
+    --container-sm: 24rem;
+    --radius-lg: 0.5rem;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
@@ -2459,6 +2461,9 @@
   .table {
     display: table;
   }
+  .aspect-square {
+    aspect-ratio: 1 / 1;
+  }
   .size-4 {
     width: calc(var(--spacing) * 4);
     height: calc(var(--spacing) * 4);
@@ -2474,6 +2479,9 @@
   .\!h-10 {
     height: calc(var(--spacing) * 10) !important;
   }
+  .h-full {
+    height: 100%;
+  }
   .min-h-screen {
     min-height: 100vh;
   }
@@ -2482,6 +2490,9 @@
   }
   .w-full {
     width: 100%;
+  }
+  .max-w-sm {
+    max-width: var(--container-sm);
   }
   .\!min-w-0 {
     min-width: calc(var(--spacing) * 0) !important;
@@ -2529,6 +2540,9 @@
       }
     }
   }
+  .resize {
+    resize: both;
+  }
   .grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -2567,8 +2581,14 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .overflow-hidden {
+    overflow: hidden;
+  }
   .rounded {
     border-radius: 0.25rem;
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
   }
   .border {
     border-style: var(--tw-border-style);
@@ -2581,6 +2601,9 @@
   .\!border-blue-600 {
     border-color: var(--color-blue-600) !important;
   }
+  .border-blue-600 {
+    border-color: var(--color-blue-600);
+  }
   .glass {
     border: none;
     backdrop-filter: blur(var(--glass-blur, 40px));
@@ -2588,6 +2611,9 @@
     background-image: linear-gradient( 135deg, oklch(100% 0 0 / var(--glass-opacity, 30%)) 0%, oklch(0% 0 0 / 0%) 100% ), linear-gradient( var(--glass-reflect-degree, 100deg), oklch(100% 0 0 / var(--glass-reflect-opacity, 5%)) 25%, oklch(0% 0 0 / 0%) 25% );
     box-shadow: 0 0 0 1px oklch(100% 0 0 / var(--glass-border-opacity, 20%)) inset, 0 0 0 2px oklch(0% 0 0 / 5%);
     text-shadow: 0 1px oklch(0% 0 0 / var(--glass-text-shadow-opacity, 5%));
+  }
+  .bg-black {
+    background-color: var(--color-black);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);

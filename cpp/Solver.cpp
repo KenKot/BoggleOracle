@@ -13,8 +13,6 @@ std::set<FoundWord> Solver::getFoundWords(Board &board) {
     Dict::Node* root = dict.getRoot();
     std::set<FoundWord> wordsFound;
 
-    // std::cout << "!" << board.getRowCount() << " " << board.getColCount() << "\n";
-
     for (int r = 0; r < board.getRowCount(); r++) {
         for (int c = 0; c < board.getColCount(); c++) {
             dfs(r, c, root, currPrefix, board, wordsFound, currPath);
@@ -38,7 +36,6 @@ void Solver::dfs(int row, int col, Dict::Node* currNode, std::string& currPrefix
         if (!next) return;  // ex: ensures both "q" and "u" are in path for "qu"
     }
 
-    // mark visited
     board.markVisited(row, col);
 
     currPath.emplace_back(row, col);
