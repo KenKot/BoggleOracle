@@ -1,5 +1,5 @@
 import { runBtnEl, prefillBtnEl, newGameBtnEl } from "./UI/DOM.js";
-import { prefillBoard } from "./testing/utils.js";
+// import { prefillBoard } from "./testing/utils.js";
 import { state, setSize, setCells } from "./state.js";
 import { initWebcamUI } from "./UI/webcam.js";
 
@@ -30,9 +30,10 @@ newGameBtnEl.addEventListener("click", () => {
   showBoardPage();
 });
 
-prefillBtnEl.addEventListener("click", () => {
-  prefillBoard(state.cells, state.size);
-});
+// for testing
+// prefillBtnEl?.addEventListener("click", () => {
+//   prefillBoard(state.cells, state.size);
+// });
 
 runBtnEl.addEventListener("click", async () => {
   cam?.stop?.();
