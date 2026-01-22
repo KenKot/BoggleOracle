@@ -7,5 +7,9 @@ https://kenkot.github.io/BoggleOracle/
 
 Simply select the desired board size (4x4, 5x5, 6x6) and click "Start Camera" to use the camera. Once you align the camera grid with the letters, click "Capture". If the some letters are off, or you wish to not use a camera you can manually enter letters in the grid, then click "Solve Board" to get the results!
 
-![Boggle Oracle capture screen](misc/bog1.png)
-![Boggle Oracle results screen](misc/bog2.png)
+<p align="center">
+  <img src="misc/bog1.png" alt="Boggle Oracle capture screen" width="520" />
+</p>
+<p align="center">
+  <img src="misc/bog2.png" alt="Boggle Oracle results screen" width="520" />
+</p>
