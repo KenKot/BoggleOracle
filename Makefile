@@ -9,6 +9,8 @@ all:
 		--preload-file dictionaries@/dictionaries \
 		-o web/boggle.js
 
+updateGitPreview:
+	cp -R web/* docs/
 
 clean:
 	rm -f web/boggle.js web/boggle.wasm web/boggle.data

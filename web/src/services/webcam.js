@@ -54,7 +54,7 @@ export function createWebcam(options) {
 
     ctx.save();
     ctx.strokeStyle = "rgba(0,255,0,0.85)";
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 5;
 
     ctx.strokeRect(1, 1, viewSize - 2, viewSize - 2);
 
