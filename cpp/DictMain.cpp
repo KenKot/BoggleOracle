@@ -92,5 +92,5 @@ char* solveBoard(const char** arr, int rows, int cols) {
 }
 
 int main(){
-    std::cout << "main fired\n" << std::flush;
+    // std::cout << "main fired\n" << std::flush;
 }

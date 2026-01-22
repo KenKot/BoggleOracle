@@ -9,41 +9,69 @@
     <!-- page 1 - webcam, board, solve button -->
     <div
       id="page1"
-      class="w-full min-h-screen flex flex-col items-center justify-center p-4 gap-4"
+      class="w-full min-h-screen flex flex-col items-center justify-center p-6 gap-6 bg-gradient-to-b from-base-200 via-base-300/60 to-base-200"
     >
-      <div id="camera" class="w-full max-w-sm flex flex-col items-center gap-2">
-        <div
-          class="w-full aspect-square border-2 border-blue-600 rounded-lg overflow-hidden bg-black"
-        >
-          <canvas
-            id="cam-viewport"
-            width="960"
-            height="960"
-            class="w-full h-full block"
-          ></canvas>
+      <div class="card w-full max-w-xl bg-base-100 shadow-xl">
+        <div class="card-body gap-6 items-center">
+          <div class="text-center space-y-2">
+            <p class="text-base-content/70">
+              Align the camera's grid with each letter. You can fix & enter
+              letters manually.
+            </p>
+          </div>
+
+          <div
+            id="camera"
+            class="w-full max-w-sm flex flex-col items-center gap-3"
+          >
+            <div
+              class="w-full aspect-square border-2 border-blue-600 rounded-xl overflow-hidden bg-black shadow-inner"
+            >
+              <canvas
+                id="cam-viewport"
+                width="960"
+                height="960"
+                class="w-full h-full block"
+              ></canvas>
+            </div>
+
+            <div class="join">
+              <button id="start-cam" class="btn btn-primary btn-sm join-item">
+                Start camera
+              </button>
+              <button
+                id="capture"
+                class="btn btn-outline btn-sm join-item"
+                disabled
+              >
+                Capture
+              </button>
+            </div>
+          </div>
+
+          <div id="size-buttons" class="join">
+            <button id="size-4" class="btn btn-sm join-item" disabled>
+              4x4
+            </button>
+            <button id="size-5" class="btn btn-sm join-item">5x5</button>
+            <button id="size-6" class="btn btn-sm join-item">6x6</button>
+          </div>
+
+          <div class="w-full flex flex-col items-center gap-3">
+            <div
+              id="board"
+              class="inline-grid grid-cols-4 gap-1 place-items-center border-2 !border-blue-600 rounded-lg bg-base-200/50 p-2"
+            ></div>
+          </div>
+
+          <div class="flex gap-2 justify-center">
+            <button id="run" class="btn btn-primary btn-sm">
+              Solve Board!
+            </button>
+            <!-- prefill button for testing -->
+            <!-- <button id="prefill" class="btn btn-sm">Prefill</button> -->
+          </div>
         </div>
-
-        <div class="w-full flex flex-wrap gap-2 justify-center">
-          <button id="start-cam" class="btn btn-sm">Start camera</button>
-          <button id="capture" class="btn btn-sm" disabled>Capture</button>
-        </div>
-      </div>
-
-      <div
-        id="board"
-        class="inline-grid grid-cols-4 gap-1 place-items-center border-2 !border-blue-600 rounded-lg"
-      ></div>
-
-      <div id="size-buttons" class="flex gap-2 justify-center flex-wrap">
-        <button id="size-4" class="btn btn-sm" disabled>4x4</button>
-        <button id="size-5" class="btn btn-sm">5x5</button>
-        <button id="size-6" class="btn btn-sm">6x6</button>
-      </div>
-
-      <div class="flex gap-2 justify-center">
-        <button id="run" class="btn btn-sm">Solve Board!</button>
-        <!-- prefill button for testing -->
-        <!-- <button id="prefill" class="btn btn-sm">Prefill</button> -->
       </div>
     </div>
 
